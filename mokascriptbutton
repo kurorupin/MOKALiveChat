@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <style type='text/css'>
+        	.embeddedServiceHelpButton .helpButton .uiButton {
+        		background-color: #3c5caa;
+        		font-family: "Arial", sans-serif;
+        	}
+        	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+        		outline: 1px solid #3c5caa;
+        	}
+        </style>
+        
+        <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+        <script type='text/javascript'>
+            var initESW = function (gslbBaseURL) {
+            window.embedded_svc.settings.displayHelpButton = true // Or false
+            window.embedded_svc.settings.language = "" // For example, enter 'en' or 'en-US'
+            window.embedded_svc.settings.enabledFeatures = ["LiveAgent"]
+            window.embedded_svc.settings.entryFeature = "LiveAgent"
+            window.embedded_svc.init(
+                "https://gotocompany--mokadev2.sandbox.my.salesforce.com",
+                "https://gotocompany--mokadev2.sandbox.my.salesforce-sites.com/guest",
+                gslbBaseURL,
+                "00D1s0000000NSp",
+                "Moka_Chat",
+                {
+                    baseLiveAgentContentURL:
+                        "https://c.la2-c1cs-ukb.salesforceliveagent.com/content",
+                    deploymentId: "5721s0000008OdD",
+                    buttonId: "5731s0000004Cb9",
+                    baseLiveAgentURL:
+                        "https://d.la2-c1cs-ukb.salesforceliveagent.com/chat",
+                    eswLiveAgentDevName:
+                        "EmbeddedServiceLiveAgent_Parent04I1s0000004CcoEAE_188429ef41a",
+                    isOfflineSupportEnabled: false
+                }
+            )
+        }
 
+        if (!window.embedded_svc) {
+            var s = document.createElement("script")
+            s.setAttribute(
+                "src",
+                "https://gotocompany--mokadev2.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js"
+            )
+            s.onload = function () {
+                initESW(null)
+            }
+            document.body.appendChild(s)
+        } else initESW("https://service.force.com")
+        </script>
+    </body>
+</html>
